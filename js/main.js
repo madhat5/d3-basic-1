@@ -28,7 +28,7 @@ g = d3.select('#chart-area')
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.bottom + margin.top)
     .append('g')
-        .attr('transform', 'translate(' + margin.left + margin.top + ")");
+        .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
 
 
 // LABELS
@@ -85,15 +85,15 @@ d3.json('data/revenues.json').then( data => {
     g.append('g')
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,' + height + ')')
-        .call(xAxisCall);
-        // .selectAll('text')
-        // .attr('y', '10')
-        // .attr('x', '-5')
-        // .attr('text-anchor', 'end')
-        // .attr('transform', 'rotate(-40)');
+        .call(xAxisCall)
+        .selectAll('text')
+        .attr('y', '10')
+        .attr('x', '-5')
+        .attr('text-anchor', 'end')
+        .attr('transform', 'rotate(-40)');
     
     yAxisCall = d3.axisLeft(y)
-        // .ticks(3)
+        .ticks(4)
         .tickFormat(d => {
             return '$' + d;
         })
